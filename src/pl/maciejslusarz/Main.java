@@ -33,9 +33,9 @@ public class Main {
                 System.out.println("To był zły wybór! Ale masz okazję spróbować jeszcze raz.");
             }
             System.out.println("Co chcesz zrobić?");
-            System.out.println("1 - Oblicz pole prostokąta");
-            System.out.println("2 - Oblicz pole koła");
-            System.out.println("3 - Oblicz pole trapezu");
+            System.out.println("1 - Oblicz prostokąt");
+            System.out.println("2 - Oblicz koło");
+            System.out.println("3 - Oblicz trapez");
             System.out.println("0 - Wyjdź z programu");
             System.out.print("Wybierz rozsądnie: ");
             n = input.nextInt();
@@ -48,6 +48,7 @@ public class Main {
             System.out.print("Wprowadź długość drugiego boku: ");
             float b = input.nextFloat();
             System.out.printf("Pole prostokąta wynosi: %.1f\n", Pole.prostokat(a, b));
+            System.out.printf("Obwód prostokąta wynosi: %.1f\n", Obwod.prostokat(a,b));
             System.out.print(closeTheProgram);
             System.in.read();
             System.exit(0);
@@ -55,6 +56,7 @@ public class Main {
             System.out.print("Wprowadź promień koła: ");
             float r = input.nextFloat();
             System.out.printf("Pole koła wynosi: %.1f\n", Pole.kolo(r));
+            System.out.printf("Długość koła wynosi: %.1f\n", Obwod.kolo(r));
             System.out.print(closeTheProgram);
             System.in.read();
             System.exit(0);
@@ -63,23 +65,25 @@ public class Main {
             float a = input.nextFloat();
             System.out.print("Wprowadź długość krótszej podstawy trapezu: ");
             float b = input.nextFloat();
+            System.out.println("Wprowadź boczną krawędź trapezu: ");
+            float c = input.nextFloat();
             System.out.print("Wprowadź długość wysokości dzielącej dwie podstawy od siebie: ");
             float h = input.nextFloat();
             System.out.printf("Pole trapezu wynosi: %.1f\n", Pole.trapez(a, b, h));
+            System.out.printf("Obwód trapezu wynosi: %.1f\n", Obwod.trapez(a,b,c));
             System.out.print(closeTheProgram);
             System.in.read();
             System.exit(0);
         }
     }
     public static class Pole {
-        static float prostokat(float a, float b) {
-            return a * b;
-        }
-        static double kolo(float r) {
-            return Math.PI * Math.pow(r, 2);
-        }
-        static float trapez(float a, float b, float h) {
-            return ((a + b) * h) / 2;
-        }
+        static float prostokat(float a, float b) { return a * b; }
+        static double kolo(float r) { return Math.PI * Math.pow(r, 2); }
+        static float trapez(float a, float b, float h) { return ((a + b) * h) / 2; }
+    }
+    public static class Obwod {
+        static float prostokat(float a, float b) { return 2 * a + 2 * b; }
+        static double kolo(float r) { return 2 * Math.PI * r; }
+        static float trapez(float a, float b, float c) { return a + b + (2 * c); }
     }
 }
